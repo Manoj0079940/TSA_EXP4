@@ -1,5 +1,5 @@
 # Ex.No:04   FIT ARMA MODEL FOR TIME SERIES
-# Date: 
+# Date: 15-9-25
 
 
 
@@ -23,25 +23,67 @@ axis limits.
 6. Display the autocorrelation and partial autocorrelation plots for the ARMA(2,2) process using
 plot_acf and plot_pacf.
 ### PROGRAM:
+```
+from pandas import read_csv
+from pandas import datetime
+from matplotlib import pyplot
+from pandas.plotting import autocorrelation_plot
+from pandas import DataFrame
+from statsmodels.tsa.arima_model import ARIMA
+from statsmodels.graphics.tsaplots import plot_acf, plot_pacf
+from statsmodels.tsa.arima_process import ArmaProcess
+import matplotlib.pyplot as plt
+import numpy as np
+import warnings
+warnings.filterwarnings('ignore')
+import matplotlib.pyplot as plt
+import numpy as np
 
+plt.rcParams['figure.figsize'] = [10, 7.5]
+
+ar1 = np.array([1,0.33])
+ma1 = np.array([1,0.9])
+ARMA_1 = ArmaProcess(ar1,ma1).generate_sample(nsample = 1000)
+plt.plot(ARMA_1)
+plt.title('Simulated ARMA(1,1) Process')
+plt.xlim([0, 200])
+plt.show()
+plot_acf(ARMA_1)
+plot_pacf(ARMA_1)
+ar2 = np.array([1, 0.33, 0.5])
+ma2 = np.array([1, 0.9, 0.3])
+ARMA_2 = ArmaProcess(ar2, ma2).generate_sample(nsample=10000)
+plt.plot(ARMA_2)
+plt.title('Simulated ARMA(2,2) Process')
+plt.xlim([0, 200])
+plt.show()
+plot_acf(ARMA_2)
+plot_pacf(ARMA_2)
+```
 OUTPUT:
 SIMULATED ARMA(1,1) PROCESS:
+<img width="998" height="658" alt="image" src="https://github.com/user-attachments/assets/f53ae1f2-6a5e-46e1-a1ec-c664fd286e74" />
 
 
 
 Partial Autocorrelation
 
 Autocorrelation
+<img width="892" height="666" alt="image" src="https://github.com/user-attachments/assets/5589c5ed-96c1-4ee7-a0fb-bf96920a06e4" />
 
 
 
 SIMULATED ARMA(2,2) PROCESS:
+<img width="977" height="655" alt="image" src="https://github.com/user-attachments/assets/43656a9a-e74d-436a-a57b-80fa7a0590b5" />
 
 Partial Autocorrelation
+
+<img width="891" height="645" alt="image" src="https://github.com/user-attachments/assets/262a0a03-8317-4b29-aac3-d7bdbc992f6a" />
 
 
 
 Autocorrelation
+<img width="951" height="662" alt="image" src="https://github.com/user-attachments/assets/54932934-cbe4-4715-b461-9cb524df44f8" />
 
 RESULT:
 Thus, a python program is created to fir ARMA Model successfully.
